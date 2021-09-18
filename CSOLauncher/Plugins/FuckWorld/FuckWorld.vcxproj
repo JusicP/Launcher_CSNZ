@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>BTE</ProjectName>
+    <ProjectGuid>{FBF9CAF6-8DED-4EB0-8E7B-18294607C5C5}</ProjectGuid>
+    <RootNamespace>FuckWorld</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;common;common\freetype;..\..\Interface;..\..\;..\..\HLSDK\cl_dll;..\..\HLSDK\common;..\..\HLSDK\dlls;..\..\HLSDK\engine;..\..\HLSDK\pm_shared;..\..\HLSDK\public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUCKWORLD_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;freetype249.lib;binkw32.lib;glut32.lib;imm32.lib;user32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "debug\bte.dll" "D:\CSBTE\cstrike\metahook\plugins\bte.dll"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>.\;common;common\freetype;..\..\Interface;..\..\;..\..\HLSDK\cl_dll;..\..\HLSDK\common;..\..\HLSDK\dlls;..\..\HLSDK\engine;..\..\HLSDK\pm_shared;..\..\HLSDK\public;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUCKWORLD_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;4311;4312;4430;4996;4244;4305;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;freetype249.lib;binkw32.lib;glut32.lib;imm32.lib;user32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ForceSymbolReferences>
+      </ForceSymbolReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "release\bte.dll" "D:\CSBTE\cstrike\metahook\plugins\bte.dll"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="base.cpp" />
+    <ClCompile Include="base64.cpp" />
+    <ClCompile Include="BaseUI.cpp" />
+    <ClCompile Include="BTEPanel.cpp" />
+    <ClCompile Include="BugReport.cpp" />
+    <ClCompile Include="calcscreen.cpp" />
+    <ClCompile Include="client.cpp" />
+    <ClCompile Include="CrashHandle.cpp" />
+    <ClCompile Include="CSmtp.cpp" />
+    <ClCompile Include="deathmsg.cpp" />
+    <ClCompile Include="DeathRun.cpp" />
+    <ClCompile Include="display.cpp" />
+    <ClCompile Include="drawimage.cpp" />
+    <ClCompile Include="DrawRetina.cpp" />
+    <ClCompile Include="DrawTABPanel.cpp" />
+    <ClCompile Include="DrawTargaImage.cpp" />
+    <ClCompile Include="engfunchoook.cpp" />
+    <ClCompile Include="engfuncs.cpp" />
+    <ClCompile Include="event.cpp" />
+    <ClCompile Include="exportfuncs.cpp" />
+    <ClCompile Include="extraammo.cpp" />
+    <ClCompile Include="followicon.cpp" />
+    <ClCompile Include="Fonts.cpp" />
+    <ClCompile Include="FontText.cpp" />
+    <ClCompile Include="gdboard.cpp" />
+    <ClCompile Include="imagelib.cpp" />
+    <ClCompile Include="..\..\HLSDK\common\interface.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="menu.cpp" />
+    <ClCompile Include="message.cpp" />
+    <ClCompile Include="mgui.cpp" />
+    <ClCompile Include="msghook.cpp" />
+    <ClCompile Include="overview.cpp" />
+    <ClCompile Include="parsemsg.cpp" />
+    <ClCompile Include="playaudio.cpp" />
+    <ClCompile Include="playbink.cpp" />
+    <ClCompile Include="Quest.cpp" />
+    <ClCompile Include="respawnbar.cpp" />
+    <ClCompile Include="scoreboard.cpp" />
+    <ClCompile Include="texdraw.cpp" />
+    <ClCompile Include="TriAPI.cpp" />
+    <ClCompile Include="util.cpp" />
+    <ClCompile Include="weapons.cpp" />
+    <ClCompile Include="zb3ui.cpp" />
+    <ClCompile Include="zbsboard.cpp" />
+    <ClCompile Include="zombieescape.cpp" />
+	<ClCompile Include="zb4ui.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base.h" />
+    <ClInclude Include="base64.h" />
+    <ClInclude Include="BaseUI.h" />
+    <ClInclude Include="BTEPanel.h" />
+    <ClInclude Include="BugReport.h" />
+    <ClInclude Include="calcscreen.h" />
+    <ClInclude Include="client.h" />
+    <ClInclude Include="CrashHandle.h" />
+    <ClInclude Include="CSmtp.h" />
+    <ClInclude Include="deathmsg.h" />
+    <ClInclude Include="DeathRun.h" />
+    <ClInclude Include="display.h" />
+    <ClInclude Include="drawimage.h" />
+    <ClInclude Include="DrawRetina.h" />
+    <ClInclude Include="DrawTABPanel.h" />
+    <ClInclude Include="DrawTargaImage.h" />
+    <ClInclude Include="Encode.h" />
+    <ClInclude Include="engfunchook.h" />
+    <ClInclude Include="engfuncs.h" />
+    <ClInclude Include="event.h" />
+    <ClInclude Include="exportfuncs.h" />
+    <ClInclude Include="extraammo.h" />
+    <ClInclude Include="followicon.h" />
+    <ClInclude Include="Fonts.h" />
+    <ClInclude Include="FontText.h" />
+    <ClInclude Include="gdboard.h" />
+    <ClInclude Include="imagelib.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="menu.h" />
+    <ClInclude Include="message.h" />
+    <ClInclude Include="mgui.h" />
+    <ClInclude Include="msghook.h" />
+    <ClInclude Include="overview.h" />
+    <ClInclude Include="parsemsg.h" />
+    <ClInclude Include="playaudio.h" />
+    <ClInclude Include="playbink.h" />
+    <ClInclude Include="Quest.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="respawnbar.h" />
+    <ClInclude Include="scoreboard.h" />
+    <ClInclude Include="texdraw.h" />
+    <ClInclude Include="TriAPI.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="weapons.h" />
+    <ClInclude Include="XorStr.h" />
+    <ClInclude Include="zb3ui.h" />
+    <ClInclude Include="zbsboard.h" />
+    <ClInclude Include="zombieescape.h" />
+	<ClInclude Include="zb4ui.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BugReport.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CSBTE.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

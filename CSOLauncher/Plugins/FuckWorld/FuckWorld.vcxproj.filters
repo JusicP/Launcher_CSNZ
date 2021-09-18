@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="base64.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseUI.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BTEPanel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BugReport.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="calcscreen.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="client.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CrashHandle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CSmtp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="deathmsg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DeathRun.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="display.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="drawimage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawRetina.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawTABPanel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawTargaImage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="engfunchoook.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="engfuncs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="exportfuncs.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="extraammo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="followicon.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Fonts.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FontText.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="gdboard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="imagelib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\HLSDK\common\interface.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="message.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mgui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="overview.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="parsemsg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="playbink.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Quest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="respawnbar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="scoreboard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="texdraw.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TriAPI.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="weapons.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="zb3ui.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="zbsboard.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="zombieescape.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="msghook.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="playaudio.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="base64.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseUI.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BTEPanel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BugReport.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="calcscreen.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="client.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CrashHandle.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CSmtp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="deathmsg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DeathRun.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="display.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="drawimage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawRetina.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawTABPanel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawTargaImage.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Encode.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="engfunchook.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="engfuncs.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="exportfuncs.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="extraammo.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="followicon.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonts.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FontText.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gdboard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="imagelib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mgui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="overview.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="parsemsg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="playbink.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Quest.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="respawnbar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="scoreboard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="texdraw.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TriAPI.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="weapons.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="XorStr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zb3ui.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zbsboard.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="zombieescape.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="msghook.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="playaudio.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="BugReport.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CSBTE.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+</Project>
