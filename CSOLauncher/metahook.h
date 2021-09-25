@@ -72,3 +72,27 @@ extern cl_enginefunc_t gEngfuncs;
 extern metahook_api_t *g_pMetaHookAPI;
 extern mh_enginesave_t *g_pMetaSave;
 #endif
+
+#define MAX_ZIP_SIZE	(1024 * 1024 * 16 )
+
+#include "XZip.h"
+
+HZIP MapList_Zip;
+HZIP ClientTable_Zip;
+HZIP GameMatchOption_Zip;
+HZIP WeaponParts_Zip;
+HZIP MileageShop_Zip;
+HZIP GameModeList_Zip;
+HZIP progress_unlock_Zip;
+HZIP ReinforceMaxLv_Zip;
+HZIP ReinforceMaxExp_Zip;
+HZIP Item_Zip;
+HZIP voxel_list_Zip;
+HZIP voxel_item_Zip;
+HZIP HonorMoneyShop_Zip;
+HZIP ItemExpireTime_Zip;
+HZIP scenariotx_common_Zip;
+HZIP scenariotx_dedi_Zip;
+HZIP shopitemlist_dedi_Zip;
+HZIP WeaponProp_Zip;
+HZIP ppsystem_Zip;

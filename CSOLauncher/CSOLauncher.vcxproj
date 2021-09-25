@@ -136,6 +136,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <ExceptionHandling>Async</ExceptionHandling>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -147,6 +148,9 @@
       <BaseAddress>0x1400000</BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalOptions>/FORCE %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
       <Command>"F:\Soft\Themida 2.4.6.0\themida.exe" /protect F:\Users\Jusic\Documents\proj.tmd /inputfile "F:\Users\Jusic\Desktop\Data\CSO Servers\CSO launcher\Bin\CSOLauncher.dll" /outputfile "F:\Users\Jusic\Desktop\Data\CSO Servers\CSO launcher\Bin\CSOLauncher.dll"</Command>
@@ -162,9 +166,11 @@
     <ClCompile Include="Detours\detours.cpp" />
     <ClCompile Include="Detours\disasm.cpp" />
     <ClCompile Include="Detours\modules.cpp" />
+    <ClCompile Include="XZip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cdll_export.h" />
+    <ClInclude Include="dirent.h" />
     <ClInclude Include="ExceptHandle.h" />
     <ClInclude Include="Interface\ICommandLine.h" />
     <ClInclude Include="metahook.h" />
@@ -177,6 +183,7 @@
     <ClInclude Include="Interface\IRegistry.h" />
     <ClInclude Include="Detours\detours.h" />
     <ClInclude Include="Detours\detver.h" />
+    <ClInclude Include="XZip.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Launcher.rc" />
