@@ -11,14 +11,10 @@
 
 #include <IPluginsV1.h>
 #include <exception>
+#include <vector>
 
-#include <fstream>
-#include <iostream>
+#define MAX_ZIP_SIZE	(1024 * 1024 * 16 )
 #include "XZip.h"
-#include <dirent.h>
-#include <filesystem>
-
-namespace fs = std::filesystem;
 
 using namespace std;
 
@@ -266,8 +262,6 @@ bool g_bWriteMetadata = false;
 WNDPROC oWndProc;
 HWND hWnd;
 
-vector<string> vectorMetadataName;
-
 void CreateDebugConsole()
 {
     AllocConsole();
@@ -417,52 +411,6 @@ const char* GetMetadataName(int metaDataID)
 	return NULL;
 }
 
-HZIP GetMetadataZip(int metaDataID)
-{
-	switch (metaDataID)
-	{
-	case 0:
-		return MapList_Zip;
-	case 1:
-		return ClientTable_Zip;
-	case 9:
-		return GameMatchOption_Zip;
-	case 17:
-		return WeaponParts_Zip;
-	case 18:
-		return MileageShop_Zip;
-	case 24:
-		return GameModeList_Zip;
-	case 27:
-		return progress_unlock_Zip;
-	case 28:
-		return ReinforceMaxLv_Zip;
-	case 29:
-		return ReinforceMaxExp_Zip;
-	case 32:
-		return Item_Zip;
-	case 33:
-		return voxel_list_Zip;
-	case 34:
-		return voxel_item_Zip;
-	case 36:
-		return HonorMoneyShop_Zip;
-	case 37:
-		return ItemExpireTime_Zip;
-	case 38:
-		return scenariotx_common_Zip;
-	case 39:
-		return scenariotx_dedi_Zip;
-	case 40:
-		return shopitemlist_dedi_Zip;
-	case 42:
-		return WeaponProp_Zip;
-	case 45:
-		return ppsystem_Zip;
-	}
-	return NULL;
-}
-
 int __fastcall Packet_Metadata_Parse(void* _this, int a2, void* packetBuffer, int packetSize)
 {
 	unsigned char metaDataID = *(unsigned char*)packetBuffer;
@@ -472,88 +420,75 @@ int __fastcall Packet_Metadata_Parse(void* _this, int a2, void* packetBuffer, in
 
 	if (g_bDumpMetadata)
 	{
-		char name[128];
+		char name[MAX_PATH];
 		FILE* file = NULL;
+		short metaDataSize = 0;
+
+		CreateDirectory("MetadataDump", NULL);
 
 		if (metaDataName)
 		{
-			sprintf(name, "Metadata_%d_%s.bin", metaDataID, metaDataName);
-			ifstream file(name);
-
-			if (file.is_open())
-			{
-				int i = 0;
-				bool found = true;
-				do
-				{
-					sprintf(name, "Metadata_%d_%d_%s.bin", metaDataID, i++, metaDataName);
-					ifstream file(name);
-
-					found = file.is_open() > 0 ? true : false;
-				} while (found);
-			}
+			metaDataSize = *((short*)((char*)packetBuffer + 1));
+			sprintf(name, "MetadataDump/Metadata_%d_%s.bin", metaDataSize, metaDataName);
 		}
 		else
 		{
-			sprintf(name, "Metadata_%d.bin", metaDataID);
-			ifstream file(name);
-
-			if (file.is_open())
-			{
-				int i = 0;
-				bool found = true;
-				do
-				{
-					sprintf(name, "Metadata_%d_%d.bin", metaDataID, i++);
-					ifstream file(name);
-
-					found = file.is_open() > 0 ? true : false;
-				} while (found);
-			}
+			sprintf(name, "MetadataDump/Metadata_%d.bin", metaDataID);
 		}
 
 		file = fopen(name, "wb");
-		fwrite(packetBuffer, packetSize, 1, file);
+		if (metaDataSize)
+		{
+			fwrite(((short*)((char*)packetBuffer + 3)), metaDataSize, 1, file);
+		}
+		else
+		{
+			fwrite(packetBuffer, packetSize, 1, file);
+		}
 		fclose(file);
 	}
 
-	if (g_bWriteMetadata)
+	if (g_bWriteMetadata && metaDataName != NULL)
 	{
-		if(metaDataName != NULL && std::find(vectorMetadataName.begin(), vectorMetadataName.end(), metaDataName) != vectorMetadataName.end())
+		HZIP hMetaData = CreateZip(0, MAX_ZIP_SIZE, ZIP_MEMORY);
+
+		if (!hMetaData)
 		{
-			HZIP MetaDataZip = GetMetadataZip(metaDataID);
-
-			MetaDataZip = CreateZip(0, MAX_ZIP_SIZE, ZIP_MEMORY);
-
-			if (!MetaDataZip)
-				printf("CreateZip returned NULL.\n");
-
-			char path[128];
-			sprintf(path, "Metadata/%s", metaDataName);
-			cout << path << endl;
-			void* metadataName = path;
-
-			if (ZipAdd(MetaDataZip, metaDataName, metadataName, 0, ZIP_FILENAME))
-				printf("ZipAdd returned error.\n");
-
-			void* buffer;
-			unsigned long length = 0;
-			ZipGetMemory(MetaDataZip, &buffer, &length);
-
-			const char* charBuffer = (char*)buffer;
-			vector<char> vectorBuffer(charBuffer, charBuffer + length);
-
-			unsigned char length1 = length;
-			unsigned char length2 = length >> 8;
-
-			vectorBuffer.insert(vectorBuffer.begin(), length2);
-			vectorBuffer.insert(vectorBuffer.begin(), length1);
-			vectorBuffer.insert(vectorBuffer.begin(), metaDataID);
-
-			CloseZip(MetaDataZip);
-
-			return g_pfnPacket_Metadata_Parse(_this, static_cast<void*>(vectorBuffer.data()), length + 3);
+			printf("CreateZip returned NULL.\n");
+			return g_pfnPacket_Metadata_Parse(_this, packetBuffer, packetSize);
 		}
+
+		char path[128];
+		sprintf(path, "Metadata/%s", metaDataName);
+		printf("%s\n", path);
+
+		if (ZipAdd(hMetaData, metaDataName, path, 0, ZIP_FILENAME))
+		{
+			printf("ZipAdd returned error.\n");
+			return g_pfnPacket_Metadata_Parse(_this, packetBuffer, packetSize);
+		}
+
+		void* buffer;
+		unsigned long length = 0;
+		ZipGetMemory(hMetaData, &buffer, &length);
+
+		if (length == 0)
+		{
+			printf("ZipGetMemory returned zero length.\n");
+			return g_pfnPacket_Metadata_Parse(_this, packetBuffer, packetSize);
+		}
+
+		std::vector<unsigned char> destBuffer;
+		std::vector<unsigned char> metaDataBuffer((char*)buffer, (char*)buffer + length);
+
+		destBuffer.push_back(length);
+		destBuffer.push_back(length >> 8);
+		destBuffer.push_back(metaDataID);
+		destBuffer.insert(destBuffer.end(), metaDataBuffer.begin(), metaDataBuffer.end());
+
+		CloseZip(hMetaData);
+
+		return g_pfnPacket_Metadata_Parse(_this, static_cast<void*>(destBuffer.data()), destBuffer.size());
 	}
 
 	return g_pfnPacket_Metadata_Parse(_this, packetBuffer, packetSize);
@@ -924,28 +859,7 @@ void CSNZ_InitHooks()
 		if (!g_pPacket_Metadata_Parse)
 			MessageBox(NULL, "g_pPacket_Metadata_Parse == NULL!!!", "Error", MB_OK);
 
-		if (g_bWriteMetadata)
-		{
-			std::filesystem::path path = std::filesystem::current_path() / "Metadata";
-			struct dirent* entry;
-			DIR* dir = opendir(path.string().c_str());
-
-			if (dir == NULL) {
-				printf("Bin/Metadata directory not found.\n");
-				g_bWriteMetadata = false;
-			}
-
-			if (g_bWriteMetadata)
-			{
-				while ((entry = readdir(dir)) != NULL) {
-					vectorMetadataName.push_back(entry->d_name);
-				}
-				closedir(dir);
-			}
-		}
-
-		if (g_bDumpMetadata || g_bWriteMetadata)
-			g_phPacket_Metadata_Parse = InlineHook(g_pPacket_Metadata_Parse, Packet_Metadata_Parse, (void*&)g_pfnPacket_Metadata_Parse);
+		g_phPacket_Metadata_Parse = InlineHook(g_pPacket_Metadata_Parse, Packet_Metadata_Parse, (void*&)g_pfnPacket_Metadata_Parse);
 	}
 	printf("0x%X\n", g_pPacket_Metadata_Parse);
 

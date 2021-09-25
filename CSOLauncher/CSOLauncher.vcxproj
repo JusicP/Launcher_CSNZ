@@ -136,7 +136,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -170,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cdll_export.h" />
-    <ClInclude Include="dirent.h" />
     <ClInclude Include="ExceptHandle.h" />
     <ClInclude Include="Interface\ICommandLine.h" />
     <ClInclude Include="metahook.h" />
