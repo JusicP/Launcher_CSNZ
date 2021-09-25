@@ -485,17 +485,15 @@ int __fastcall Packet_Metadata_Parse(void* _this, int a2, void* packetBuffer, in
 			return g_pfnPacket_Metadata_Parse(_this, packetBuffer, packetSize);
 		}
 
-		std::vector<unsigned char> destBuffer;
 		std::vector<unsigned char> metaDataBuffer((char*)buffer, (char*)buffer + length);
 
-		destBuffer.push_back(length);
-		destBuffer.push_back(length >> 8);
-		destBuffer.push_back(metaDataID);
-		destBuffer.insert(destBuffer.end(), metaDataBuffer.begin(), metaDataBuffer.end());
+		metaDataBuffer.insert(metaDataBuffer.begin(), length >> 8);
+		metaDataBuffer.insert(metaDataBuffer.begin(), length);
+		metaDataBuffer.insert(metaDataBuffer.begin(), metaDataID);
 
 		CloseZip(hMetaData);
 
-		return g_pfnPacket_Metadata_Parse(_this, static_cast<void*>(destBuffer.data()), destBuffer.size());
+		return g_pfnPacket_Metadata_Parse(_this, static_cast<void*>(metaDataBuffer.data()), metaDataBuffer.size());
 	}
 
 	return g_pfnPacket_Metadata_Parse(_this, packetBuffer, packetSize);
