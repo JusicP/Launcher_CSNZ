@@ -369,7 +369,7 @@ void UnkFunc(int a1, int a2, char *a3)
 	g_pfnUnkFunc(a1, a2, a3);
 }
 
-char* GetMetadataName(int metaDataID)
+const char* GetMetadataName(int metaDataID)
 {
 	switch (metaDataID)
 	{
@@ -468,7 +468,7 @@ int __fastcall Packet_Metadata_Parse(void* _this, int a2, void* packetBuffer, in
 	unsigned char metaDataID = *(unsigned char*)packetBuffer;
 	printf("%d\n", metaDataID);
 
-	char* metaDataName = GetMetadataName(metaDataID);
+	const char* metaDataName = GetMetadataName(metaDataID);
 
 	if (g_bDumpMetadata)
 	{
