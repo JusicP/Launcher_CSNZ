@@ -422,13 +422,13 @@ int __fastcall Packet_Metadata_Parse(void* _this, int a2, void* packetBuffer, in
 	{
 		char name[MAX_PATH];
 		FILE* file = NULL;
-		short metaDataSize = 0;
+		unsigned short metaDataSize = 0;
 
 		CreateDirectory("MetadataDump", NULL);
 
 		if (metaDataName)
 		{
-			metaDataSize = *((short*)((char*)packetBuffer + 1));
+			metaDataSize = *((unsigned short*)((char*)packetBuffer + 1));
 			sprintf(name, "MetadataDump/Metadata_%d_%s.bin", metaDataSize, metaDataName);
 		}
 		else
@@ -437,15 +437,22 @@ int __fastcall Packet_Metadata_Parse(void* _this, int a2, void* packetBuffer, in
 		}
 
 		file = fopen(name, "wb");
-		if (metaDataSize)
+		if (!file)
 		{
-			fwrite(((short*)((char*)packetBuffer + 3)), metaDataSize, 1, file);
+			printf("Can't open '%s' file to write metadata dump\n", name);
 		}
 		else
 		{
-			fwrite(packetBuffer, packetSize, 1, file);
+			if (metaDataSize)
+			{
+				fwrite(((unsigned short*)((char*)packetBuffer + 3)), metaDataSize, 1, file);
+			}
+			else
+			{
+				fwrite(packetBuffer, packetSize, 1, file);
+			}
+			fclose(file);
 		}
-		fclose(file);
 	}
 
 	if (g_bWriteMetadata && metaDataName != NULL)
@@ -458,7 +465,7 @@ int __fastcall Packet_Metadata_Parse(void* _this, int a2, void* packetBuffer, in
 			return g_pfnPacket_Metadata_Parse(_this, packetBuffer, packetSize);
 		}
 
-		char path[128];
+		char path[MAX_PATH];
 		sprintf(path, "Metadata/%s", metaDataName);
 		printf("%s\n", path);
 
