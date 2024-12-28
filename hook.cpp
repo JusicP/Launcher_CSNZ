@@ -33,8 +33,8 @@ DWORD g_dwFileSystemSize;
 #define DEFAULT_IP "127.0.0.1"
 #define DEFAULT_PORT "30002"
 
-#define SOCKETMANAGER_SIG_CSNZ23 "\xE8\x00\x00\x00\x00\xEB\x00\x33\xC0\xFF\x75\x00\xA3"
-#define SOCKETMANAGER_MASK_CSNZ23 "x????x?xxxx?x"
+#define SOCKETMANAGER_SIG_CSNZ23 "\x55\x8B\xEC\x6A\x00\x68\x00\x00\x00\x00\x64\xA1\x00\x00\x00\x00\x50\x51\x53\x56\x57\xA1\x00\x00\x00\x00\x33\xC5\x50\x8D\x45\x00\x64\xA3\x00\x00\x00\x00\x8B\xD9\x89\x5D\x00\x8A\x45"
+#define SOCKETMANAGER_MASK_CSNZ23 "xxxx?x????xx????xxxxxx????xxxxx?xx????xxxx?xx"
 
 #define SERVERCONNECT_SIG_CSNZ2019 "\xE8\x00\x00\x00\x00\x85\xC0\x75\x00\x46"
 #define SERVERCONNECT_MASK_CSNZ2019 "x????xxx?x"
@@ -90,8 +90,8 @@ DWORD g_dwFileSystemSize;
 #define LOADJSON_SIG_CSNZ "\x55\x8B\xEC\x8B\x0D\x00\x00\x00\x00\x53\x56\x8B\x75\x00\x8B\x01\x57\x8B\x50\x00\x8B\x45\x00\x83\x78\x00\x00\x76\x00\x8B\x00\x6A\x00\x68\x00\x00\x00\x00\x50\xFF\xD2\x8B\x0D\x00\x00\x00\x00\x8B\xD8\x53\x8B\x11\xFF\x52\x00\x8B\xF8\x85\xFF\x74"
 #define LOADJSON_MASK_CSNZ "xxxxx????xxxx?xxxxx?xx?xx??x?xxx?x????xxxxx????xxxxxxx?xxxxx"
 
-#define LOGTOERRORLOG_SIG_CSNZ "\x55\x8B\xEC\x81\xEC\x00\x00\x00\x00\xA1\x00\x00\x00\x00\x33\xC5\x89\x45\x00\x56\x8B\x75\x00\x8D\x45\x00\x57"
-#define LOGTOERRORLOG_MASK_CSNZ "xxxxx????x????xxxx?xxx?xx?x"
+#define LOGTOERRORLOG_SIG_CSNZ "\x55\x8B\xEC\x81\xEC\x00\x00\x00\x00\xA1\x00\x00\x00\x00\x33\xC5\x89\x45\x00\x56\x57\x8B\x7D\x00\x8D\x45\x00\x50\x6A"
+#define LOGTOERRORLOG_MASK_CSNZ "xxxxx????x????xxxx?xxxx?xx?xx"
 
 #define READPACKET_SIG_CSNZ "\xE8\x00\x00\x00\x00\x8B\xF0\x83\xFE\x00\x77"
 #define READPACKET_MASK_CSNZ "x????xxxx?x"
@@ -1448,7 +1448,7 @@ void Hook(HMODULE hEngineModule, HMODULE hFileSystemModule)
 		if (!find)
 			MessageBox(NULL, "SocketManagerConstructor == NULL!!!", "Error", MB_OK);
 		else
-			InlineHookFromCallOpcode((void*)find, Hook_SocketManagerConstructor, (void*&)g_pfnSocketManagerConstructor, dummy);
+			InlineHook((void*)find, Hook_SocketManagerConstructor, (void*&)g_pfnSocketManagerConstructor);
 
 		find = FindPattern(SERVERCONNECT_SIG_CSNZ2019, SERVERCONNECT_MASK_CSNZ2019, g_dwEngineBase, g_dwEngineBase + g_dwEngineSize, NULL);
 		if (!find)
