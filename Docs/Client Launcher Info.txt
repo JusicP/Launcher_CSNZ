@@ -7,23 +7,18 @@ Launch parameter list for the client launcher:
 1. -debug/-dev/+developer 1/-developer (enable debug console. by default, disabled)
 2. -ip <ip> (master server's IP. default: 127.0.0.1)
 3. -port <port> (master server's port. default: 30002)
-4. -login/-register <username> (username for auto login/register. by default, disabled)
-5. -password <password> (password for the auto login/register. by default, disabled)
-6. -useoriginalserver (use IP and port from the NARs/PAKs. by default, disabled)
-7. -dumpmetadata (dump metadata packets received to folder "CSNZ\Bin\MetadataDump". by default, disabled)
-8. -ignoremetadata (ignore metadata received. by default, disabled)
-9. -dumpquest (dump quest packets received to folder "CSNZ\Bin\QuestDump". by default, disabled)
-10. -dumpumsg (dump umsg packets received to folder "CSNZ\Bin\UMsgDump". by default, disabled)
-11. -dumpalarm (dump alarm packets received to folder "CSNZ\Bin\AlarmDump". by default, disabled)
-12. -dumpitem (dump item packets received to folder "CSNZ\Bin\ItemDump". by default, disabled)
-13. -dumpcrypt (dump crypt packets received to folder "CSNZ\Bin\CryptDump". by default, disabled)
-14. -dumpall (dump all packets received to folder "CSNZ\Bin\Packets". by default, disabled)
-15. -disableauthui (disable login/register pop-up. by default, pop-up enabled)
-16. -usessl (use ssl when connecting to the master server. by default, not using ssl)
-17. -writemetadata (overwrite zip metadatas from the folder "CSNZ\Bin\Metadata". by default, disabled)
-18. -loaddedicsvfromfile (load dedicated server csv files from the folder "CSNZ\Data". by default, loading from filesystem and hardcoded values)
-19. -nonghook (disable the hook of BlackCipher2/NGClient, which makes the anti-cheat be able to run. by default, anti-cheat disabled)
-20. -nomutex (don't create mutex, which allows more than one instance of the game to be running at the same time. by default, only one instance is allowed)
+4. -username <username> (username for auto login. by default, disabled)
+5. -password <password> (password for auto login. by default, disabled)
+5. -useoriginalserver (use IP and port from the NARs/PAKs. by default, disabled)
+6. -dumpmetadata (dump metadata packets received to folder "CSNZ\Bin\MetadataDump". by default, disabled)
+7. -ignoremetadata (ignore metadata received. by default, disabled)
+8. -dumpall (dump all packets received to folder "CSNZ\Bin\Packets". by default, disabled)
+9. -disableauthui (disable login/register pop-up. by default, pop-up enabled)
+10. -usessl (use ssl when connecting to the master server. by default, not using ssl)
+11. -writemetadata (overwrite zip metadatas from the folder "CSNZ\Bin\Metadata". by default, disabled)
+12. -loaddedifromfile (load dedicated server csv/json files from the folder "CSNZ\Data". by default, loading from filesystem and hardcoded values)
+13. -nonghook (disable the hook of BlackCipher2/NGClient, which makes the anti-cheat be able to run. by default, anti-cheat disabled)
+14. -nomutex (don't create mutex, which allows more than one instance of the game to be running at the same time. by default, only one instance is allowed)
 
 Zip Metadatas:
 - MapList.csv
@@ -49,7 +44,7 @@ Zip Metadatas:
 - shopitemlist_dedi.json
 - EpicPieceShop.csv
 - WeaponProp.json
-- SeasonBadgeShop.csv
+- BlackBadgeShop.csv
 - ppsystem.json
 - classmastery.json
 - ZBCompetitive.json
@@ -57,19 +52,30 @@ Zip Metadatas:
 - EventShop.csv
 - FamilyTotalWarMap.csv
 - FamilyTotalWar.json
+- WeaponAscend.csv
+- PerkParam.csv
+- AnniversaryShop.csv
+- GlobalAnniversaryLottery.json
+- AnniversaryLottery.json
+- AnniversaryTicket.json
+- Synthesis.csv
 
-Dedicated server csv files:
+Dedicated server csv/json files:
+- maps/%s_ent_dedi.json (%s being the map name. example: maps/de_dust2_ent_dedi.json)
 - maps/BoostingPoints_Dedi_%s.csv (%s being the map name. example: maps/BoostingPoints_Dedi_dm_mtbase.csv)
 - maps/TDM_Spawn_Replacement_Dedi.csv
+- maps/ZBS_ENC_%s_dedi.json (%s being the map name. example: maps/ZBS_ENC_zsrift_splinter_dedi.json)
 - resource/allstar/AllStar_Skill-Dedi.csv
 - resource/allstar/AllStar_Status-Dedi.csv
 - resource/ModeEvent/LastStand_Dedi.csv
 - resource/ModeEvent/ProtectionSupplyWeapon_Dedi.csv
 - resource/ModeEvent/RandomRule_Classic_Dedi.csv
 - resource/ModeEvent/RandomRule_Dedi.csv
+- resource/ModeEvent/ZB3_AllHero_Dedi.json
 - resource/ModeEvent/ZSRogueLiteAbility_Dedi.csv
 - resource/ModeEvent/ZSTransform_Skill-Dedi.csv
 - resource/ModeEvent/ZSTransform_Status-Dedi.csv
+- resource/ZombieHorrorEscape/ZHE_RuleBonus_Dedi.csv
 - resource/zombi/FireBombOption_Dedi.csv
 - resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_Crazy.csv
 - resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_JumpBuff.csv
@@ -100,13 +106,17 @@ Dedicated server csv files:
 - resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_Protect.csv
 - resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_ChargeSlash.csv
 - resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_Claw.csv
+- resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_Confuse.csv
+- resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_Defending.csv
+- resource/zombi/ZombieSkillProperty_Dedi/ZombieSkillProperty_Shield.csv
 - resource/zombi5/HumanAbilityData_Dedi.csv
 - resource/zombi5/HumanAbilityProbData_Dedi.csv
 - resource/zombi5/SpecialZombieProb_Dedi.csv
 - resource/zombi5/VirusFactorReq_Dedi.csv
 - resource/zombi5/ZombiVirusBonus_Dedi.csv
+- resource/zombiez/ZombieDamageExp_Dedi.csv
 
 Command list for the client launcher:
-1. cso_bot_add (add T bot. crashes the game if you're not in-game, if you're not the room host or the room is being hosted by a dedicated server)
-2. cso_bot_add 1 (add CT bot. crashes the game if you're not in-game, if you're not the room host or the room is being hosted by a dedicated server)
+1. cso_bot_add (add T bot)
+2. cso_bot_add 1 (add CT bot)
 3. metadata_requestall (requests all metadatas to be sent to the client)
