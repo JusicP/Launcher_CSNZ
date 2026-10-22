@@ -1582,7 +1582,7 @@ void Init(HMODULE hEngineModule, HMODULE hFileSystemModule)
 	if (CommandLine()->CheckParm("-username", &username) && username)
 	{
 		strncpy(g_pUsername, username, sizeof(g_pUsername));
-		printf("g_pLogin = %s\n", g_pUsername);
+		printf("g_pUsername = %s\n", g_pUsername);
 	}
 	if (CommandLine()->CheckParm("-password", &password) && password)
 	{
