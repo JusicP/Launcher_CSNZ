@@ -63,9 +63,6 @@ DWORD g_dwMpSize;
 #define HOLEPUNCH_SETSERVERINFO_SIG_CSNZ "\x55\x8B\xEC\xB8\x00\x00\x00\x00\x66\xA3"
 #define HOLEPUNCH_SETSERVERINFO_MASK_CSNZ "xxxx????xx"
 
-#define HOLEPUNCH_GETUSERSOCKETINFO_SIG_CSNZ "\x55\x8B\xEC\x83\xEC\x00\x57\x8B\x7D\x00\x85\xFF\x75\x00\x8B\x45"
-#define HOLEPUNCH_GETUSERSOCKETINFO_MASK_CSNZ "xxxxx?xxx?xxx?xx"
-
 #define CREATESTRINGTABLE_SIG_CSNZ "\x55\x8B\xEC\x53\x56\x8B\xF1\xC7\x46"
 #define CREATESTRINGTABLE_MASK_CSNZ "xxxxxxxxx"
 
@@ -1297,20 +1294,6 @@ CreateHook(WINAPI, void, OutputDebugStringA, LPCSTR lpOutString)
 	g_pfnOutputDebugStringA(lpOutString);
 }
 
-CreateHook(__cdecl, int, HolePunch_GetUserSocketInfo, int userID, char* data)
-{
-	auto ret = g_pfnHolePunch_GetUserSocketInfo(userID, data);
-
-	data[0] = 2; // unsafety method, since other places port are corrected
-
-	short port = (short&)data[14];
-	in_addr ip = (in_addr&)data[16];
-
-	printf("[HolePunch_GetUserSocketInfo] ret: %d | UserID: %d, %s:%d\n", ret, userID, inet_ntoa(ip), ntohs(port));
-
-	return ret;
-}
-
 CreateHook(__stdcall, int, Packet_Login_Send, DWORD** username, DWORD** password, const void** a3)
 {
 	if (g_pUsername && g_pPassword)
@@ -1665,12 +1648,6 @@ void Hook(HMODULE hEngineModule, HMODULE hFileSystemModule)
 			MessageBox(NULL, "HolePunch_SetServerInfo == NULL!!!", "Error", MB_OK);
 		else
 			InlineHook((void*)find, Hook_HolePunch_SetServerInfo, (void*&)g_pfnHolePunch_SetServerInfo);
-
-		find = FindPattern(HOLEPUNCH_GETUSERSOCKETINFO_SIG_CSNZ, HOLEPUNCH_GETUSERSOCKETINFO_MASK_CSNZ, g_dwEngineBase, g_dwEngineBase + g_dwEngineSize, NULL);
-		if (!find)
-			MessageBox(NULL, "HolePunch_GetUserSocketInfo == NULL!!!", "Error", MB_OK);
-		else
-			InlineHook((void*)find, Hook_HolePunch_GetUserSocketInfo, (void*&)g_pfnHolePunch_GetUserSocketInfo);
 
 		/*
 		{
